@@ -1,0 +1,80 @@
+<!-- c-> fetchProd+addOrder  -->
+<!-- s-> fetchProd+updateProd -->
+<div>
+    <div >
+        <div class="row">
+            <div class="col-md-5 text-center  " ><img style="width:300px; height:300 px;" ng-src="{{product.picurl}}" alt=""></div>
+            <div  class="col-md-7 border-left border-dark">
+                <div>
+                <h2><b>{{product.name}}</b></h2></div><br><br>
+                <div>
+                <h4>Price: {{product.price|currency:'&#8377;'}}</h4>
+                <h6>Delivery Charges: {{product.deliverycharges|currency:'&#8377;'}}</h6>
+                <h4>Qty: {{product.quantity}}</h4>
+                </div>
+                <div style="margin-left: 60px; margin-top: 80px;">
+                    <button ng-show="!loggedIn||loggedInC" class="btn btn-success mr-5" ng-click="buy()">Buy Now <i class="fas fa-angle-double-right"></i></button>
+                    <button ng-show="loggedInC" class="btn btn-warning" ng-click="cart()"><i class="fas fa-cart-plus"></i></button>
+                    <button ng-show="loggedInM" ng-class="{'btn-success': product.homepage, 'btn-danger':!product.homepage}" class="btn" ng-click="homeToggle()">{{editHome}}</button>
+                    <button ng-show="loggedInS" class="btn btn-outline-warning" ng-click="formToggle()">Update Product</button>
+                </div>
+            </div>
+        </div>
+        <br><hr>
+        <div style="margin: 40px 20px;">
+            <h4 style="text-align: center">Seller: {{product.sellerid}}</h4>
+            <hr>
+            <h3>Description:</h3>
+            <p>{{product.description}}</p>
+        </div>
+    </div>
+    <div id="orderItem" class="popup" style="pointer-events: all;">
+        hi <br><input type="number" min="1" value="1" ng-model="orderQty" max="{{product.quantity}}">
+        <button class="btn btn-danger mr-3" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-success" ng-click="order()">Order</button>
+    </div>
+
+    <h3 id="res">{{res}}</h3>
+    <br><br>
+    <div ng-show="updForm" class="text-center">
+        <form name="updprod" novalidate>
+            <table>
+                <tr>
+                    <td>Product Id:</td>
+                    <td><input type="text" value="{{product.productid}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>Seller Id:</td>
+                    <td><input type="text" value="{{product.sellerid}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" ng-model="name" required></td>
+                </tr>
+                <tr>
+                    <td>Quantity:</td>
+                    <td><input type="number" ng-model="quantity" pattern="^\d+$" required></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td><input type="number" ng-model="price" pattern="^\d+$" required></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><input type="text" ng-model="description"></td>
+                </tr>
+                <tr>
+                    <td>Delivery Charges:</td>
+                    <td><input type="number" ng-model="deliverycharges" pattern="^\d+$"></td>
+                </tr>
+                <tr>
+                    <td>Image URL:</td>
+                    <td><input type="url" ng-model="picurl"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="button" ng-disabled="updprod.$invalid" ng-click="updateProd()" class="btn btn-success">Upload</button></td>
+                </tr>
+            </table><br>
+        </form>
+    </div>
+</div>

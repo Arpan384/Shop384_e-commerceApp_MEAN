@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop384</title>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./assets/style.js"></script>
+
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/global/routes.js"></script>
+    <script src="./scripts/global/constants.js"></script>
+    <script src="./scripts/global/models/masterFact.js"></script>
+    <script src="./scripts/global/models/loginFact.js"></script>
+    <script src="./scripts/global/controllers/globalCtrl.js"></script>
+    <script src="./scripts/global/controllers/loginCtrl.js"></script>
+    <script src="./scripts/global/models/userUpDelFact.js"></script>
+    <script src="./scripts/global/models/adminOpsFact.js"></script>
+    <script src="./scripts/global/controllers/adminCtrl.js"></script>
+    <script src="./scripts/global/models/masterOpsFact.js"></script>
+    <script src="./scripts/global/controllers/masterCtrl.js"></script>
+    <script src="./scripts/global/controllers/dashboardCtrl.js"></script>
+    <script src="./scripts/global/models/cartOpsFact.js"></script>
+    <script src="./scripts/global/models/fetchProdFact.js"></script>
+    <script src="./scripts/global/controllers/allProdCtrl.js"></script>
+    <script src="./scripts/global/models/sellerOpsFact.js"></script>
+    <script src="./scripts/global/models/orderOpsFact.js"></script>
+    <script src="./scripts/global/controllers/soloCtrl.js"></script>
+    <script src="./scripts/global/controllers/inventoryCtrl.js"></script>
+    <script src="./scripts/global/controllers/orderCtrl.js"></script>
+
+</head>
+<body ng-app="app" class="bg-white">
+    <div ng-controller="globalCtrl">
+        <div class="jumbotron bg-info text-center text-white"><h1 class="display-1 Courier"> <i class="fas fa-shopping-basket"></i> Shop384</h1></div>
+        <div class="container bg-light">
+            <nav ng-if="!master" class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
+                <a class="navbar-brand" href=""><i class="fas fa-cubes"></i>&emsp;Shop384</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item text-center" >
+                        <a class="nav-link" href="#/home" ng-if="!loggedIn||loggedInC">Home</a>
+                    </li>
+                    <li class="nav-item text-center" >
+                        <a class="nav-link" href="#/dashboard" ng-if="loggedIn">Dashboard</a>
+                    </li>
+                    <li class="nav-item text-center" ng-if="!loggedIn||loggedInC||loggedInS||loggedInM">
+                        <a class="nav-link" href="#/products">All Products</a>
+                    </li>
+                    <li class="nav-item text-center" ng-if="loggedInC">
+                        <a class="nav-link" href="#/inventory">Inventory</a>
+                    </li>
+                    <li class="nav-item text-center" ng-if="loggedInC||loggedInS">
+                            <a class="nav-link" href="#/orders">Orders</a>
+                    </li>
+                    <!-- <li class="nav-item text-center justify-content-end" ng-if="!loggedIn">
+                            <a class="nav-link" href="#/login">Log In/Register</a>
+                    </li>
+                    <li class="nav-item text-center  justify-content-end" ng-if="loggedIn" ng-click="logOut()">
+                        <a class="nav-link" href="">Log Out</a>
+                    </li> -->
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0 justify-content-center">
+                    <button class="btn btn-danger my-2 my-sm-0" ng-if="loggedIn" ng-click="logOut()"><a class="nav-link text-white" href="">Log Out</a></button>
+                    <button class="btn btn-primary my-2 my-sm-0" ng-if="!loggedIn"><a class="nav-link text-white" href="#/login">Log In/Register</a></button>
+                    </div>
+                </div>
+            </nav>
+            <div ng-if="master"> <br>
+                <div  class="border border-primary rounded text-center" style="width: 50%; margin:auto; margin-top: 3em; background-color: lightcyan">
+                    <h3 class="alert-success">Welcome Owner</h3>
+
+                    <form  name="f1" novalidate>
+                        <input type="email" name="email" ng-model="email" placeholder="Type your email id here" class="rounded text-center" required style="width:80%">
+                        <p ng-if="f1.email.$touched && f1.email.$invalid && f1.email.$error['required']">Email cannot be blank</p>
+                        <p ng-if="f1.email.$touched && f1.email.$invalid && f1.email.$error['email']">Invalid email address</p>
+                        <p><b>Note: </b>Please be careful while providing the email address, you might not be able to recover this app</p>
+                        <button ng-disabled="f1.$invalid" type="button" class="btn btn-warning" ng-click="genMaster(email)">Submit</button><br><br>
+                    </form>
+                </div>
+            </div>
+                <h1 ng-if="!master" class="display-3" ng-class="mClass">{{masterGen}}</h1>
+            <br>
+            <br>
+            <br>
+            <div ng-view>
+            </div>
+            <br>
+        </div>
+    </div>
+    <br><br>
+    <footer class="text-center bg-secondary text-white fixed-bottom">Welcome to Shop384</footer>
+    
+</body>
+</html>

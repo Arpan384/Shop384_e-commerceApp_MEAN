@@ -1,0 +1,43 @@
+<div class="text-center border border-primary">
+    <h4>{{resp}}</h4><br>
+ <form name="Log" ng-show="!reg" novalidate>
+
+    <input type="text" name="username" ng-model="username" placeholder="Enter username here" pattern="[a-zA-Z]{5,12}" required autofocus><br>
+    <span ng-if="Log.username.$touched && Log.username.$invalid && Log.username.$error['required']">Username cannot be blank<br></span>
+    <span ng-if="Log.username.$touched && Log.username.$invalid && Log.username.$error['pattern']">Username must be between 5-12 characters and consist of alphabets only<br></span><br>
+
+    <input type="password" name="password" ng-model="password" placeholder="Enter password here" required><br>
+    <span ng-if="Log.password.$touched && Log.password.$invalid && Log.password.$error['required']">Password cannot be blank<br></span><br>
+
+    <span ng-if="Log.$invalid" style="color: orangered">Please check/fill all the fields<br><br></span>
+ </form>
+
+ <form name="Reg" ng-show="reg" novalidate>
+
+        <input type="text" name="username" ng-model="username" placeholder="Enter username here" pattern="[a-zA-Z]{5,12}" autofocus autocomplete="off" required><br>
+        <span ng-if="Reg.username.$touched && Reg.username.$invalid && Reg.username.$error['required']">Username cannot be blank<br></span>
+        <span ng-if="Reg.username.$touched && Reg.username.$invalid && Reg.username.$error['pattern']">Username must be between 5-12 characters<br></span><br>
+    
+        <input type="password" name="password" ng-model="password" placeholder="Enter password here" required><br>
+        <span ng-if="Reg.password.$touched && Reg.password.$invalid && Reg.password.$error['required']">Password cannot be blank<br></span><br>
+    
+        <div>
+            <input type="email" name="email" ng-model="email" placeholder="Enter email id here" required><br>
+            <span ng-if="Reg.email.$touched && Reg.email.$invalid && Reg.email.$error['required']">Email id cannot be blank<br></span>
+            <span ng-if="Reg.email.$touched && Reg.email.$invalid && Reg.email.$error['pattern']">Email id is invalid<br></span><br>
+    
+            <select name="role" ng-model="role" required>
+                <option value="">User Type</option>
+                <option value="seller">Seller</option>
+                <option value="consumer">Consumer</option>
+            </select><br>
+            <span ng-if="Reg.role.$touched && Reg.role.$invalid && Reg.role.$error['required']">Please select a role<br></span> <br>
+        </div>
+        <span ng-if="Reg.$invalid" style="color: orangered">Please check/fill all the fields<br><br></span>
+ </form>
+ <button type="button" ng-click="log()" class="btn btn-success">Login</button>&emsp;
+ <button type="button" ng-click="regist()" class="btn btn-primary">Register</button><br>
+ <br>
+</div>
+
+

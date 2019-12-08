@@ -1,0 +1,35 @@
+<!-- cart fetch -->
+<div>
+    <div class="jumbotron-fluid text-white text-center" id="head">
+        <div class="container"><h1 class="display-3 lead">Inventory</h1></div><br>
+    </div>
+    <div ng-show="$scope.tick" class="text-center justify-content-center">
+        <div class="spinner-grow text-primary"></div>
+        <div class="spinner-grow text-warning"></div>
+        <div class="spinner-grow text-dark"></div>
+        <div class="spinner-grow text-success"></div>
+        <div class="spinner-grow text-danger"></div>
+    </div>
+    <div class="h1 lead text-center" ng-show="response"><br>{{resp}}</div>
+    <div class="row">
+        <div ng-show="!$scope.tick" ng-repeat="item in cartitems" class="col-sm-12  border border-warning rounded" style="background-color:honeydew">
+            <div class="text-center text-white bg-danger rounded" style="cursor: pointer;" ng-click="delCart(item.productid)">X
+                <!-- <button class="btn btn-danger" style="z-index: 10; display: block;" ng-click="delCart(item.productid)">X</button> -->
+            </div>
+            <a style="all: unset; cursor: pointer; z-index: -5; margin-top: -20px;" href="#/solo/{{item.productid}}">
+                <div class="row">
+                    <div class=" text-center col-md-4"><img class="border border-light rounded-circle" style="background:linen;" id="img" ng-src={{item.picurl}} alt=""><br></div><br>
+                    <div style="margin: auto auto;" class="text-center bg-light col-md-6">
+                        <p><b>Name: <span class="text-success">{{item.name}}</span></b></p>
+                        <p>Price: {{item.price|currency:'&#8377;'}}</p>
+                        <p>Qty: {{item.quantity}}</p>
+                    </div>
+                    <!-- <div class="col-md-2 text-center" style="margin: auto auto;" > -->
+                        
+                    <!-- </div> -->
+                </div>
+            </a>
+            
+        </div>
+    </div>
+</div>

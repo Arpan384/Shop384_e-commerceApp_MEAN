@@ -1,0 +1,46 @@
+<!-- c->order fetch+cancel -->
+<!-- s-> order fetch+update -->
+
+<div>
+    <div class="jumbotron-fluid text-white text-center" id="head">
+        <div class="container"><h1 class="display-3 lead">Orders</h1></div><br>
+    </div>
+    <div ng-show="$scope.tick" class="text-center justify-content-center">
+        <div class="spinner-grow text-primary"></div>
+        <div class="spinner-grow text-warning"></div>
+        <div class="spinner-grow text-dark"></div>
+        <div class="spinner-grow text-success"></div>
+        <div class="spinner-grow text-danger"></div>
+    </div>
+    <div class="h1 lead text-center" ng-show="response"><br>{{resp}}</div>
+    <div class="row">
+        <div ng-show="!$scope.tick" ng-repeat="order in orders" class="col-sm-12  border border-warning rounded" style="background-color:honeydew; margin-bottom: 20px;">
+            <div class="text-center text-white bg-danger rounded" ng-show="order.status != 'Cancelled'&& order.status != 'Delivered'" style="cursor: pointer;" ng-click="delOrder(order._id)">Cancel Order
+                <!-- <button class="btn btn-danger" style="z-index: 10; display: block;" ng-click="delCart(item.productid)">X</button> -->
+            </div>
+            <div class="row">
+                <a class=" text-center col-md-5" style="all: unset; cursor: pointer; z-index: -5; margin-top: -20px;" href="#/solo/{{order.productid}}">
+                    <div><button class="btn btn-primary">View Product</button></div>
+                </a>
+                <div style="margin: auto auto;" class="text-center bg-light col-md-7">
+                    <p><b>ID: <span class="text-success">{{order._id}}</span></b></p>
+                    <p><i>Status: <span class="text-warning">{{order.status}}</span></i></p>
+                    <p>Amount: {{order.amount|currency:'&#8377;'}}</p>
+                    <p>Quantity: {{order.quantity}}</p>
+                </div>
+                <div ng-show="loggedInS && (order.status != 'Cancelled' && order.status != 'Delivered')">
+                    <select ng-model="setStatus">
+                        <option value="Pending">Pending</option>
+                        <option value="Dispatched">Dispatched</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                    <button class="btn btn-warning" ng-click="updOrder(order._id,setStatus)">Update Status</button>
+                </div>
+                <!-- <div class="col-md-2 text-center" style="margin: auto auto;" > -->
+                    
+                <!-- </div> -->
+            </div>
+            
+        </div>
+    </div>
+</div>

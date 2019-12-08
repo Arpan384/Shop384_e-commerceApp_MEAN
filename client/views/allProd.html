@@ -1,0 +1,47 @@
+<!-- sab fetch -->
+
+<div class="jumbotron-fluid text-white text-center" id="head">
+    <div class="container"><h1 class="display-3 lead">Products</h1></div><br>
+</div>
+<div class="container border-dark border-bottom">
+<br>
+<div class="row justify-content-center">
+    <div class="col-md-5 text-center">
+        <input class="form-control" type="text" ng-model="search" placeholder="Type to Search">
+    </div>
+    <div class="col-md-4 text-center">
+        <span><b>Sort By:</b>&nbsp;</span>
+        <select ng-model="sort">
+            <option value="">Select</option>
+            <option value="price">By Price</option>
+            <option value="name">By Name</option>
+            <option value="quantity">By Quantity</option>
+        </select>
+    </div>
+    <div class="col-md-3 text-center">
+        <input type="checkbox" ng-model="order"><b> Asc/Desc Order</b>
+    </div>
+</div>
+<br><br>
+<div ng-show="$scope.tick" class="text-center justify-content-center">
+    <div class="spinner-grow text-primary"></div>
+    <div class="spinner-grow text-warning"></div>
+    <div class="spinner-grow text-dark"></div>
+    <div class="spinner-grow text-success"></div>
+    <div class="spinner-grow text-danger"></div>
+    <div class="h1 lead" ng-show="err" ng-init="err=false"><br>Cannot Retrieve Data</div>
+</div>
+<div class="row">
+    <div ng-show="!$scope.tick" ng-repeat="product in products|filter:search|orderBy:sort:order" class="col-lg-3 col-sm-6  border border-warning rounded" style="background-color:honeydew">
+        <a style="all: unset; cursor: pointer;" href="#/solo/{{product.productid}}">
+        <div class=" text-center "><img class="border border-light rounded-circle" style="background:linen;" id="img" ng-src={{product.picurl}} alt=""><br></div><br>
+        <div class="text-center bg-light ">
+            <p><b>Name: <span class="text-success">{{product.name}} {{product.productid}}</span></b></p>
+            <p>Price: {{product.price|currency:'&#8377;'}}</p>
+            <p>Qty: {{product.quantity}}</p>
+        </div>
+        </a>
+    </div>
+</div> <br><br>
+
+</div>

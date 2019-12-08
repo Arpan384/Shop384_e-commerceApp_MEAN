@@ -1,0 +1,15 @@
+1. master pop everytime                                                     -bug
+2. unique product error                                                     -bug
+3. master-> insertMany admin                                                *improvisation  (minor)
+4. mail to seller for product add/del                                       *improvisation  (minor)
+5. prodid -> _id  (check same name prod once per seller)                    *improvisation  (major)
+6. categories array                                                         *improvisation  (major)
+7. check seller exist before prod add                                       -bug
+8. autorefresh using ng file upload                                         -bug
+9. auto generate password for admins(try random no.)                        *improvisation  (major)
+10. dashboard-> master/admin firstTime -> change pwd compulsory             *improvisation  (minor)
+11. array of roles for each user                                            *improvisation  (major)
+12. quantity selector                                                       *improvisation  (minor)
+13. fetch profile and check consumer in inventory                           -bug
+14. master controller load at dashboard                                     -bug(ng-show)
+15. cancel only once                                                        -bug
